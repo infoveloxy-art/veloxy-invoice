@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.api import router
+from app.api.router import router
 from app.config import settings
 from app.init_db import create_database
 
