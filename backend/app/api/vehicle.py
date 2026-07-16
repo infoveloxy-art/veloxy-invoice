@@ -6,9 +6,8 @@ router = APIRouter(
 )
 
 
-@router.get("")
-def vehicles():
-
+@router.get("/")
+def get_vehicles():
     return {
         "items": []
     }
