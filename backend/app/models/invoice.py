@@ -1,12 +1,13 @@
 from sqlalchemy import (
     Column,
     Integer,
-    String,
     Float,
+    String,
     Boolean,
     Date,
-    ForeignKey,
+    ForeignKey
 )
+
 from sqlalchemy.orm import relationship
 
 from app.database import Base
@@ -20,40 +21,45 @@ class Invoice(Base):
     invoice_number = Column(
         String(20),
         unique=True,
-        nullable=False,
-        index=True,
+        nullable=False
     )
 
     customer_id = Column(
         Integer,
         ForeignKey("customers.id"),
-        nullable=False,
+        nullable=False
     )
 
     vehicle_id = Column(
         Integer,
         ForeignKey("vehicles.id"),
-        nullable=False,
+        nullable=False
     )
 
-    issue_date = Column(Date, nullable=False)
+    issue_date = Column(Date)
 
-    due_date = Column(Date, nullable=False)
+    due_date = Column(Date)
 
-    subtotal = Column(Float, default=0)
+    subtotal = Column(Float)
 
-    vat_rate = Column(Float, default=21)
+    vat_rate = Column(Float)
 
-    vat_amount = Column(Float, default=0)
+    vat_amount = Column(Float)
 
-    total = Column(Float, default=0)
+    total = Column(Float)
 
-    use_vat = Column(Boolean, default=True)
+    use_vat = Column(Boolean)
 
-    note = Column(String(500), nullable=True)
+    note = Column(String(500))
 
     paid = Column(Boolean, default=False)
 
-    customer = relationship("Customer")
+    customer = relationship(
+        "Customer",
+        back_populates="invoices"
+    )
 
-    vehicle = relationship("Vehicle")
+    vehicle = relationship(
+        "Vehicle",
+        back_populates="invoices"
+    )
