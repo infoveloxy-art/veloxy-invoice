@@ -6,9 +6,8 @@ router = APIRouter(
 )
 
 
-@router.get("")
-def customers():
-
+@router.get("/")
+def get_customers():
     return {
         "items": []
     }
