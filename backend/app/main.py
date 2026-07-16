@@ -1,9 +1,15 @@
 from fastapi import FastAPI
+
 from app.api import router
 
+from app.config import settings
+
 app = FastAPI(
-    title="VELOXY Invoice API",
-    version="1.0.0"
+
+    title=settings.APP_NAME,
+
+    version=settings.VERSION
+
 )
 
 app.include_router(router)
@@ -11,8 +17,13 @@ app.include_router(router)
 
 @app.get("/")
 def root():
+
     return {
-        "application": "VELOXY Invoice",
-        "company": "Veloxy Trade s.r.o.",
+
+        "application": settings.APP_NAME,
+
+        "version": settings.VERSION,
+
         "status": "Running"
+
     }
