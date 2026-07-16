@@ -54,6 +54,10 @@ class Invoice(Base):
 
     paid = Column(Boolean, default=False)
 
+    created_at = Column(Date)
+
+updated_at = Column(Date)
+
     customer = relationship(
         "Customer",
         back_populates="invoices"
