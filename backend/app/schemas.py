@@ -22,3 +22,39 @@ class CompanyResponse(CompanyBase):
 
     class Config:
         from_attributes = True
+        from datetime import date
+
+
+class InvoiceCreate(BaseModel):
+    customer_id: int
+    vehicle_id: int
+
+    issue_date: date
+    due_date: date
+
+    amount: float
+
+    use_vat: bool = True
+
+    note: Optional[str] = None
+
+
+class InvoiceResponse(BaseModel):
+    id: int
+
+    invoice_number: str
+
+    subtotal: float
+
+    vat_rate: float
+
+    vat_amount: float
+
+    total: float
+
+    use_vat: bool
+
+    paid: bool
+
+    class Config:
+        from_attributes = True
